@@ -27,13 +27,13 @@ async def lifespan(app_instance: FastAPI):
         logger.info("MetaTrader 5 initialized successfully during startup.")
     
     # Initialize Redis
-    if not redis_service.initialize_redis():
-        logger.warning("Failed to initialize Redis connection. Live streaming will be disabled.")
-    else:
-        logger.info("Redis connection initialized during startup.")
-        # Start background streaming task
-        asyncio.create_task(stream_market_data())
-        logger.info("Background market data streaming started.")
+    # if not redis_service.initialize_redis():
+    #     logger.warning("Failed to initialize Redis connection. Live streaming will be disabled.")
+    # else:
+    #     logger.info("Redis connection initialized during startup.")
+    #     # Start background streaming task
+    #     asyncio.create_task(stream_market_data())
+    #     logger.info("Background market data streaming started.")
     
     yield  # This is where the application runs
 
@@ -113,3 +113,7 @@ async def stream_market_data():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8001, log_level="info")
+
+
+
+
